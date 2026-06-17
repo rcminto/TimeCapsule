@@ -172,7 +172,7 @@
                 <div class="divider" style="margin:1.4rem 0;"></div>
                 <div class="text-center text-xs" style="color:var(--text-muted);line-height:1.9;">
                     <i class="fas fa-lock mr-1"></i>封存：<span id="pv-seal"></span><br>
-                    <i class="fas fa-envelope-open mr-1"></i>毕业时：<span id="pv-open"></span>
+                    <i class="fas fa-envelope-open mr-1"></i>开启：<span id="pv-open">毕业时</span>
                 </div>
             </div>
             <div class="flex justify-center gap-4 mt-8">
@@ -200,7 +200,7 @@
                     <div style="color:var(--text-muted);"><i class="fas fa-user mr-2" style="color:var(--accent);"></i>姓名：<span style="color:var(--text);" id="s-name"></span></div>
                     <div style="color:var(--text-muted);"><i class="fas fa-envelope mr-2" style="color:var(--accent);"></i>邮箱：<span style="color:var(--text);" id="s-email"></span></div>
                     <div style="color:var(--text-muted);"><i class="fas fa-lock mr-2" style="color:var(--accent);"></i>封存：<span style="color:var(--text);" id="s-seal"></span></div>
-                    <div style="color:var(--text-muted);"><i class="fas fa-envelope-open mr-2" style="color:var(--accent);"></i>毕业时：<span style="color:var(--text);" id="s-open"></span></div>
+                    <div style="color:var(--text-muted);"><i class="fas fa-envelope-open mr-2" style="color:var(--accent);"></i>开启：<span style="color:var(--text);" id="s-open">毕业时</span></div>
                 </div>
             </div>
             <div><button onclick="reset()" class="btn-p"><i class="fas fa-plus mr-2"></i>创建新的时间胶囊</button></div>
@@ -415,7 +415,7 @@ function buildPreview() {
     const open = new Date(now); open.setFullYear(open.getFullYear()+1);
     S.openDate = open;
     document.getElementById('pv-seal').textContent = fmtDate(now);
-    document.getElementById('pv-open').textContent = fmtDate(open);
+    document.getElementById('pv-open').textContent = '毕业时';
 }
 
 /* ========== 确认封存（写入 Supabase） ========== */
@@ -469,7 +469,7 @@ async function doSeal() {
         document.getElementById('s-name').textContent = isStu ? S.name : (S.childName + '（' + S.relation + '）');
         document.getElementById('s-email').textContent = S.email || '—';
         document.getElementById('s-seal').textContent = sealedAt;
-        document.getElementById('s-open').textContent = fmtDate(openDate);
+        document.getElementById('s-open').textContent = '毕业时';
 
         nav('success');
         startCountdown();
